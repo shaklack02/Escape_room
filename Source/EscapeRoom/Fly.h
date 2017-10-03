@@ -27,7 +27,9 @@ public:
 	
 	UPROPERTY(EditAnyWhere)
 		int32 speed = 500;
-	
+	UPROPERTY(EditAnyWhere)
+		float ShipDistance = 15000;
+
 	UFUNCTION()
 	void onTimeEnd_First();
 

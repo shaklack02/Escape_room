@@ -49,7 +49,7 @@ void UFly::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTi
 
 
 void UFly::onTimeEnd_First() {
-	Ship_StartLocation.Y += 20000;
+	Ship_StartLocation.Y += ShipDistance;
 	time = 3;
 	GetWorld()->GetTimerManager().SetTimer(_LoopTimerHandle, this, &UFly::onTimeEnd_2, time, false);
 }
