@@ -24,8 +24,8 @@ void UObject_Move::BeginPlay()
 	Owner = GetOwner();
 	
 	G_Location1 = Owner->GetActorLocation().ToString();
-    
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *G_Location1);
+ //Position print
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *G_Location1);
 	
 	G_Location = FVector(Owner->GetActorLocation());
 
