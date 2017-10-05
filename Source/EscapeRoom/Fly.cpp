@@ -23,11 +23,10 @@ void UFly::BeginPlay()
 	Super::BeginPlay();
    
 	//Owner = GetOwner();
-
 	Ship_StartLocation = Owner->GetActorLocation();
 	Ship_Rotation = Owner->GetActorRotation();
 	time = FMath::FRandRange(3,10);
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *FString::FromInt(time));
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *FString::FromInt(time));
    //Ship_StartLocation.Y += 20000;
 	GetWorld()->GetTimerManager().SetTimer(_LoopTimerHandle, this, &UFly::onTimeEnd_First, time, false);
 }
@@ -38,12 +37,9 @@ void UFly::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTi
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	
-	
-
 	//float Check_Cal = FMath::Pow(2.71828, DeltaTime); //FMath::Pow(A,B) Hezka A^B
 	//UE_LOG(LogTemp, Warning, TEXT("Ship Name = %s "), *Owner->GetName());
-	//UE_LOG(LogTemp, Warning, TEXT("x = %s "), *Ship_StartLocation.ToString()); // CONVERTING float to string>>> FString::SanitizeFloat(Check_Cal)
-
+	//UE_LOG(LogTemp, Warning, TEXT("x = %sF "), *Ship_StartLocation.ToString()); // CONVERTING float to string>>> FString::SanitizeFloat(Check_Cal)
 	Ship_StartLocation.Y = Ship_StartLocation.Y + DeltaTime * speed;
 	//UE_LOG(LogTemp, Warning, TEXT("Y = %s "), *FString::SanitizeFloat(Ship_NewLocation.Y));
 	Owner->SetActorLocation(Ship_StartLocation);

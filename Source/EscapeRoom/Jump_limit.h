@@ -25,8 +25,13 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:	
-	//FVector Player_Location;
-	//FString object_name;
-	//APawn Test;
-	//AActor Test_Actor;	
+	
+	FString World_name;
+	FString Object_name;
+	FString Player_location;
+	FVector Player_vector_location;
+
+	UPROPERTY(EditAnyWhere)
+		FVector Max_jumph_hight = FVector(0, 0, 350.f);
+	
 };

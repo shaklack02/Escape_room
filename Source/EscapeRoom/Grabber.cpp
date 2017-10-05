@@ -21,7 +21,8 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//UE_LOG(LogTemp, Warning, TEXT("Grabber Reporting for duty! ! ! ! ! !"));	
+	//
+	UE_LOG(LogTemp, Warning, TEXT("Grabber Reporting for duty! ! ! ! ! !"));	
 	//Look For attached Physics Handle
 	FindPhysicsComponent();
 	FindInputComponent();
