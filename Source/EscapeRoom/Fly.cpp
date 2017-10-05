@@ -27,8 +27,8 @@ void UFly::BeginPlay()
 	Ship_StartLocation = Owner->GetActorLocation();
 	Ship_Rotation = Owner->GetActorRotation();
 	time = FMath::FRandRange(3,10);
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *FString::FromInt(time));
-   //Ship_StartLocation.Y += 20000;
+    //UE_LOG(LogTemp, Warning, TEXT("%s"), *FString::FromInt(time));
+    //Ship_StartLocation.Y += 20000;
 	GetWorld()->GetTimerManager().SetTimer(_LoopTimerHandle, this, &UFly::onTimeEnd_First, time, false);
 }
 
@@ -52,6 +52,7 @@ void UFly::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTi
 
 void UFly::onTimeEnd_First() {
 	Ship_StartLocation.Y += 100000;
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Time Ended !! InComing ")); // write on the Screan message
 	
 //	GetWorld()->GetTimerManager().SetTimer(_LoopTimerHandle, this, &UFly::onTimeEnd_2, time, false);
 }
