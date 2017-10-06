@@ -2,7 +2,7 @@
 
 #include "PositionReport.h"
 #include "GameFramework/Actor.h"
-
+#include "Engine.h"
 
 
 // Sets default values for this component's properties
@@ -24,8 +24,11 @@ void UPositionReport::BeginPlay()
 
 	FString ObjectName = GetOwner()->GetName();
 	FString ObjectPos = GetOwner()->GetTransform().GetLocation().ToString();
-//Reporting posistion
-	//UE_LOG(LogTemp, Warning, TEXT("%s is at %s "), *ObjectName, *ObjectPos);
+    //Set up a Delay Time 
+	
+	//Get the Player Location BRANCH !!
+	Player_location = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, "Object Name:" + Player_location.ToString());
 }
 
 
@@ -33,7 +36,18 @@ void UPositionReport::BeginPlay()
 void UPositionReport::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	
+	//Get the palyer Position
+	Player_location = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+	//Calculate the Vectors where the Pet will fly 
+	Player_location += Flying_object_position;	
 
-	// ...
+	float DeltaHeight = FMath::Sin(Fly_Object_const + DeltaTime) - FMath::Sin(Fly_Object_const);
+	Player_location.Z += DeltaHeight * 2;
+	GetOwner()->SetActorLocation(Player_location);
+	//rotate the Object
+	GetOwner()->AddActorLocalRotation(Rotation_Rate * DeltaTime * Rotation_speed);
+	//TODO Make the pet Fly 
+
 }
 

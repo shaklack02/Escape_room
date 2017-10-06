@@ -21,9 +21,24 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+	//Called when the time is ends
+
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+private:
 
-		
-	
+	FVector Player_location;
+	FString Object_name;
+
+	FRotator Rotation_Rate = FRotator(0.f, 180, 0.f);
+	FTimerHandle _LoopTimerHandle;
+
+	UPROPERTY(EditAnyWhere)
+	FVector Flying_object_position = FVector(50.f,50.f,50.f);
+
+	UPROPERTY(EditAnyWhere)
+		float Rotation_speed = 0.3;
+	UPROPERTY(EditAnyWhere)
+		float Fly_Object_const = 2;
+
 };

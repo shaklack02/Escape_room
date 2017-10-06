@@ -58,6 +58,5 @@ void UFly::onTimeEnd_2()
 	for (float var = 0.5; var <= 90; var++)
 	{
 		//Ship_Rotation.Roll = Ship_Rotation.Roll + var * speed;
-		
 	}
 }
