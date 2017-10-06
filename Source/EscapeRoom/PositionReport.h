@@ -27,18 +27,30 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 private:
 
-	FVector Player_location;
-	FString Object_name;
-
-	FRotator Rotation_Rate = FRotator(0.f, 180, 0.f);
-	FTimerHandle _LoopTimerHandle;
+	FVector Player_location; // TO save the palyer location in 
+	//FString Object_name; //just for testing 
+	FRotator Rotation_Rate = FRotator(0.f,180.f,0.f);  // for the Rotation 180 
 
 	UPROPERTY(EditAnyWhere)
-	FVector Flying_object_position = FVector(50.f,50.f,50.f);
+	FVector2D Font_Scale = FVector2D(1.5f,1.5f); //font print scale 
+
+	//UPROPERTY(EditAnyWhere)
+	 int32 Screan_posision = -1; //varible for the debugmessage
 
 	UPROPERTY(EditAnyWhere)
-		float Rotation_speed = 0.3;
+	FVector Flying_object_position = FVector(50.f,50.f,50.f); //onject position from the player
+
 	UPROPERTY(EditAnyWhere)
-		float Fly_Object_const = 2;
+		float Rotation_speed = 0.3f; // object rotation speed 
+
+	UPROPERTY(EditAnyWhere)
+		float Fly_Object_const = 2.0f; //just a varible for the Sin() 
+
+	UPROPERTY(EditAnyWhere)
+		float Up_down_speed = 0.06; //up and down fly speed
+
+	UPROPERTY(EditAnyWhere)
+		float Amplitude = 100; //object up and down limits fly
+
 
 };
