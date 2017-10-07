@@ -51,10 +51,11 @@ void UPositionReport::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	Player_location.Z += DeltaHeight * Amplitude;
 	GetOwner()->SetActorLocation(Player_location); // seeting the New location 
 
-	GEngine->AddOnScreenDebugMessage(Screan_posision, 0.05f, FColor::Green,
-		FString::SanitizeFloat(Player_location.Z), // converting the Float to string 
-		true,
-		Font_Scale);
+	//GEngine->AddOnScreenDebugMessage(Screan_posision, 0.05f, FColor::Green,
+	//	FString::SanitizeFloat(Player_location.Z), // converting the Float to string 
+	//	true,
+	//	Font_Scale);
+
 	Fly_Object_const += Up_down_speed; //no idea yet what is that lol ... 
 
 	//rotate the Object

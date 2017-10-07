@@ -32,6 +32,9 @@ private:
 	FVector Player_vector_location;
 
 	UPROPERTY(EditAnyWhere)
+		bool Limit_jump = false;
+
+	UPROPERTY(EditAnyWhere)
 		FVector Max_jumph_hight = FVector(0, 0, 350);
 	
 };
