@@ -19,17 +19,18 @@ UJump_limit::UJump_limit()
 void UJump_limit::BeginPlay()
 {
 	Super::BeginPlay();
-
-    World_name = GetWorld()->GetName();
-	Object_name = GetOwner()->GetName();
-	Player_location = GetOwner()->GetActorLocation().ToString();	
-	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green,
-	//	"World Name: " + 
-	//	World_name + 
-	//	"Object Location: " + 
-	//	Player_location
-	//);
-	//UE_LOG(LogTemp, Warning, TEXT("Object Name : %s"), *Object_name);	
+	if (Activate_Limit) {
+		World_name = GetWorld()->GetName();
+		Object_name = GetOwner()->GetName();
+		Player_location = GetOwner()->GetActorLocation().ToString();
+		//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green,
+		//	"World Name: " + 
+		//	World_name + 
+		//	"Object Location: " + 
+		//	Player_location
+		//);
+		//UE_LOG(LogTemp, Warning, TEXT("Object Name : %s"), *Object_name);	
+	}
 }
 
 
@@ -37,12 +38,13 @@ void UJump_limit::BeginPlay()
 void UJump_limit::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	Player_vector_location = GetOwner()->GetActorLocation();
-	if (Player_vector_location.Z > Max_jumph_hight.Z) {
-		Player_vector_location.Z = Max_jumph_hight.Z;
-		GetOwner()->SetActorLocation(Player_vector_location);
-	//GEngine->AddOnScreenDebugMessage(-1, 0.1f, FColor::Green, Player_vector_location.ToString());
+	if (Activate_Limit) {
+		Player_vector_location = GetOwner()->GetActorLocation();
+		if (Player_vector_location.Z > Max_jumph_hight.Z) {
+			Player_vector_location.Z = Max_jumph_hight.Z;
+			GetOwner()->SetActorLocation(Player_vector_location);
+			//GEngine->AddOnScreenDebugMessage(-1, 0.1f, FColor::Green, Player_vector_location.ToString());
+		}
 	}
 }
 

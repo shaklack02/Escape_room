@@ -25,7 +25,7 @@ void UPositionReport::BeginPlay()
 	
 	//Get the Player Location (FINALY DID IT )  !!
 	Player_location = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation(); 
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, "Object Name:" + Player_location.ToString());
+	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, "Object Name:" + Player_location.ToString());
 }
 
 
@@ -51,11 +51,12 @@ void UPositionReport::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	Player_location.Z += DeltaHeight * Amplitude;
 	GetOwner()->SetActorLocation(Player_location); // seeting the New location 
 
-	GEngine->AddOnScreenDebugMessage(Screan_posision, 0.05f, FColor::Green,
-		FString::SanitizeFloat(Player_location.Z), // converting the Float to string 
-		true,
-		Font_Scale);
-	Fly_Object_const += Up_down_speed; //no idea yet what is that lol ... 
+	//GEngine->AddOnScreenDebugMessage(Screan_posision, 0.05f, FColor::Green,
+	//	FString::SanitizeFloat(Player_location.Z), // converting the Float to string 
+	//	true,
+	//	Font_Scale);
+
+	Fly_Object_const += Up_down_speed; //no idea yet what is that for lol ... 
 
 	//rotate the Object
 	GetOwner()->AddActorLocalRotation(Rotation_Rate * DeltaTime * Rotation_speed); 

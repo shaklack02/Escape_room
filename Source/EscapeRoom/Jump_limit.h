@@ -33,5 +33,8 @@ private:
 
 	UPROPERTY(EditAnyWhere)
 		FVector Max_jumph_hight = FVector(0, 0, 350);
+
+	UPROPERTY(EditAnyWhere)
+		bool Activate_Limit = false; // if its true then the limit is activated
 	
 };
