@@ -45,10 +45,12 @@ bool UMove_up_object::Get_overlapping_actor()
 }
 
 void UMove_up_object::Move_object_up()
-{
-	O_location = GetOwner()->GetActorLocation();
-	O_location.Z = 1000; 
-	GetOwner()->SetActorLocation(O_location);
+{		
+	// have to fix it  (done)
+		O_location = GetOwner()->GetActorLocation();
+		O_location.Z = O_location.Z + speed;
+		GetOwner()->SetActorLocation(O_location);
+    //GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::SanitizeFloat(O_location.Z));
 	
 }
 
@@ -59,8 +61,16 @@ void UMove_up_object::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 	if (Get_overlapping_actor())
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, "Ture");
-		Actor_overlapping = false;
+		
+		if (O_location.Z > Limit_Hight) {
+			O_location.Z = Limit_Hight;
+			Actor_overlapping = false;
+			GetOwner()->SetActorLocation(O_location);
+		}
+		Move_object_up();
+
+		//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, "Ture");
+		//Actor_overlapping = false;
 	}
 	
 }

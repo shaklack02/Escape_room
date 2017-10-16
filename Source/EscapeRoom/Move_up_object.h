@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
 #include "Engine/TriggerVolume.h"
+#include "Components/ActorComponent.h"
 #include "Move_up_object.generated.h"
 
 
@@ -37,6 +37,12 @@ private:
 
 	UPROPERTY(EditAnyWhere)
 	ATriggerVolume*	PressurePlate;
+
+	UPROPERTY(EditAnyWhere)
+		float speed = 1;
+
+	UPROPERTY(EditAnyWhere)
+		float Limit_Hight = 2000;
 	
 	//saves all the actors in the arry 
 	TArray<AActor*> Overlapping_actors;
