@@ -36,6 +36,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	if (!PhysicsHandler) { UE_LOG(LogTemp, Error, TEXT("PhysicsHandler MIssing")); return; }
 	//if the Physics handle is Attached
 	if (PhysicsHandler->GrabbedComponent)
 	{
@@ -47,6 +48,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 //finding the ingputcomponent Seting up the Inputs
 void UGrabber::FindInputComponent()
 {
+	if (!PhysicsHandler) { UE_LOG(LogTemp, Error, TEXT("PhysicsHandler MIssing")); return; }
 	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
 	if (PhysicsHandler)
 	{
@@ -62,6 +64,7 @@ void UGrabber::FindInputComponent()
 //Finding the Physics component 
 void UGrabber::FindPhysicsComponent()
 {
+
 	//looking for the componnect By Class - (UPhysicsHandleComponent) once its found then Assign the Component to the PhisicsHandler pointer
 	PhysicsHandler = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 	//Check if the Component Loaded if Physics == Null(nathing) then the Componenct now loaded and you will get Error
@@ -115,7 +118,7 @@ const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 }
 //Grabig the hited object
 void UGrabber::Grab() {
-
+	if (!PhysicsHandler) { UE_LOG(LogTemp, Error, TEXT("PhysicsHandler MIssing")); return; }
 	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed"));
 
 	//LINE TRACE and see if we Reach any actors with physics body collision channel set
@@ -136,6 +139,7 @@ void UGrabber::Grab() {
 //Releasing it 
 void UGrabber::Release() {
 
+	if (!PhysicsHandler) { UE_LOG(LogTemp, Error, TEXT("PhysicsHandler  MIssing")); return; }
 	UE_LOG(LogTemp, Warning, TEXT("Grab Released"));
 
 	//release physics handle

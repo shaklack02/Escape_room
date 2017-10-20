@@ -68,6 +68,7 @@ void UOpenDoor::CloseTheDoor()
 float UOpenDoor::GetTotalMassOfActorOnPlate()
 {
 	float TotalMass = 0.f;
+	if (!PressurePlate) { UE_LOG(LogTemp, Warning, TEXT("pressurePlate missing")); return TotalMass; } // protecting From crashing if the Plate not existing
 	FString X;
 	TArray<AActor*> OverlapingActors;
 	//Find all the overlapping actors
