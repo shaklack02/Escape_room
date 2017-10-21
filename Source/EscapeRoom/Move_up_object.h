@@ -7,6 +7,7 @@
 #include "Components/ActorComponent.h"
 #include "Move_up_object.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDoorEvent);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class ESCAPEROOM_API UMove_up_object : public UActorComponent
@@ -34,6 +35,10 @@ public:
 private: 
 
 	//Set the Trigger volume 
+
+	//TODO Inport the Blueprint in to the function .... 
+	UPROPERTY(BlueprintAssignable)
+		FDoorEvent On_close;
 
 	UPROPERTY(EditAnyWhere)
 	ATriggerVolume*	PressurePlate;

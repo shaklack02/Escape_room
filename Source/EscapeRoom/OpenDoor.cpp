@@ -36,34 +36,43 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	// if the ActorThatOpens is in the Volume 
 	//if (PressurePlate->IsOverlappingActor(ActorThatOpens))
 	
-	if (GetTotalMassOfActorOnPlate() > 50.f)
+	if (GetTotalMassOfActorOnPlate() > Trigger_mass)
 	{
-		OpenTheDoor();
-		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
+		On_open.Broadcast(); //request to enter in to a blueprint 
+	
+		//OpenTheDoor();
+		//LastDoorOpenTime = GetWorld()->GetTimeSeconds();
 	}
 	
-	if (GetWorld()->GetTimeSeconds()-LastDoorOpenTime > DoorCloseDelay)
+	//if (GetWorld()->GetTimeSeconds()-LastDoorOpenTime > DoorCloseDelay)
+	else
 	{
-		CloseTheDoor();
+		On_close.Broadcast();
+		//trigget for blueprint
+		//CloseTheDoor();
 	}
 }
 
-void UOpenDoor::OpenTheDoor()
-{
-	// Creat a rotator
-	FRotator NewRotation = FRotator(0.0f, 0.0f, 0.0f); //
-	//UE_LOG(LogTemp, Warning, TEXT("Open"));
-	// Set the door rotation
-	Owner->SetActorRotation(NewRotation);
-}
-
-void UOpenDoor::CloseTheDoor()
-{
-	// Creat a rotator
-	FRotator NewRotation = FRotator(0.0f, 90.0f, 0.0f); //
-	//UE_LOG(LogTemp, Warning, TEXT("Closed"));													   // Set the door rotation
-	Owner->SetActorRotation(NewRotation);
-}
+////void UOpenDoor::OpenTheDoor()
+//{
+//	// Creat a rotator
+//	//FRotator NewRotation = FRotator(0.0f, 0.0f, 0.0f); //
+//	//UE_LOG(LogTemp, Warning, TEXT("Open"));
+//	// Set the door rotation
+//	//Owner->SetActorRotation(NewRotation);
+// //On_open_request.Broadcast(); //request to enter in to a blueprint 
+//}
+//
+////void UOpenDoor::CloseTheDoor()
+//{
+//	// Creat a rotator
+//	//FRotator NewRotation = FRotator(0.0f, 90.0f, 0.0f); //
+//	//UE_LOG(LogTemp, Warning, TEXT("Closed"));	
+//	// Set the door rotation
+//	//Owner->SetActorRotation(NewRotation);
+//
+//	
+//}
 
 float UOpenDoor::GetTotalMassOfActorOnPlate()
 {
