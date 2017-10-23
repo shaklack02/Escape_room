@@ -27,10 +27,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	
 
 private:
-	
+
 	UPROPERTY(BlueprintAssignable)
 	FMove_actor Move_object;
 
@@ -38,7 +37,6 @@ private:
     FMove_actor Move_back_object;
 
 	UPROPERTY(EditAnyWhere)
-		ATriggerVolume* Trigger_volume = nullptr; 
-		
-	
+	ATriggerVolume* Trigger_volume = nullptr; 
+			
 };

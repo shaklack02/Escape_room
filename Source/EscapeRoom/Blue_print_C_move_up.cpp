@@ -26,28 +26,27 @@ void UBlue_print_C_move_up::BeginPlay()
 
 void UBlue_print_C_move_up::Trigger()
 {
-
-	if (!Trigger_volume) { GEngine->AddOnScreenDebugMessage(-1, 0.1f, FColor::Green, "TriggerColume missing"); return; }
-
-	if (Trigger_volume->IsOverlappingActor(GetWorld()->GetFirstPlayerController()->GetOwner()))
-		Move_object.Broadcast();
+	//checking if there is a volume if not error mesage 
+	if (!Trigger_volume) { GEngine->AddOnScreenDebugMessage(-1, 0.1f, FColor::Green, "Trigger missing"); return; }
+	//checking if the actor is overloping the trigger volume
+	if (Trigger_volume->IsOverlappingActor(GetWorld()->GetFirstPlayerController()->GetPawn()))
+	{
+		Move_object.Broadcast(); // event for Blueprint to move the object
+		GEngine->AddOnScreenDebugMessage(-1, 0.1f, FColor::Green, "Move up"); 
+	}
 	else
-		Move_back_object.Broadcast();
-
-
+	{
+		Move_back_object.Broadcast(); // event for blueprint to move the object
+		GEngine->AddOnScreenDebugMessage(-1, 0.1f, FColor::Green, "Move back");
+	}
 }
-
-
-
 
 // Called every frame
 void UBlue_print_C_move_up::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
-	//TODO First The Trigger() seems liek its not Reading it right in the blueprint
+	//calling the trigger function
 	Trigger();
 }
-
 
 
